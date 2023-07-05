@@ -1,0 +1,5 @@
+/home/leekai/TestTask/build-test_task-Desktop-Debug/CMakeFiles/test_task.dir
+/home/leekai/TestTask/build-test_task-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/leekai/TestTask/build-test_task-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/leekai/TestTask/build-test_task-Desktop-Debug/CMakeFiles/test_task_autogen_timestamp_deps.dir
+/home/leekai/TestTask/build-test_task-Desktop-Debug/CMakeFiles/test_task_autogen.dir
