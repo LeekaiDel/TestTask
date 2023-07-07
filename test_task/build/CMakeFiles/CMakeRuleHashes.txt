@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-7ac93241c0fd428146d8d6fd1ec50f3c ../test_task_ru_RU.ts
-174223b8985137bcdf0a8f39b85669aa CMakeFiles/test_task_autogen

@@ -1,4 +1,0 @@
-/home/leekai/TestTask/test_task/build/CMakeFiles/test_task.dir
-/home/leekai/TestTask/test_task/build/CMakeFiles/edit_cache.dir
-/home/leekai/TestTask/test_task/build/CMakeFiles/rebuild_cache.dir
-/home/leekai/TestTask/test_task/build/CMakeFiles/test_task_autogen.dir
