@@ -20,6 +20,9 @@ set(PROJECT_SOURCES
         imageviewer.h
         enterpathwin.cpp
         enterpathwin.h
+        rgbsliders.h
+        rgbsliders.cpp
+        rgbsliders.ui
         enterpathwin.ui
         imageviewer.ui
 )
