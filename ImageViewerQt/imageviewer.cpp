@@ -8,12 +8,9 @@ ImageViewer::ImageViewer(QWidget *parent):
 {
     // Настраиваем окошко приложения
     ui->setupUi(this);
-//    QSize fix_size;
-//    fix_size.setWidth(640);
-//    fix_size.setHeight(480);
-//    this->setFixedSize(fix_size);
     // Создаем экземпляры классов преобразований изображения
-    rgbsliders = new RGBSliders(this, &image); // Настройка RGB каналов
+    // rgbsliders_widget = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов
+    setcontrast_widget = new SetContrast(this, &preview_image); // Настройка контраста
 
     timer_update_image = new QTimer(this);
     connect(timer_update_image, &QTimer::timeout, this, &ImageViewer::updateImage);
@@ -26,6 +23,7 @@ ImageViewer::~ImageViewer()
     delete ui;
 }
 
+// Метод перевода цветного изображения в черно-белый
 QImage *ImageViewer::SetGrayScale(QImage origin_img)
 {
     QImage *new_img = new QImage(origin_img.width(), origin_img.height(), QImage::Format_RGB32);
@@ -41,37 +39,45 @@ QImage *ImageViewer::SetGrayScale(QImage origin_img)
     return new_img;
 }
 
-
+// Закрытие приложения через меню
 void ImageViewer::on_actionClose_triggered()
 {
     this->close();
 }
 
-
+// Открытие файла через меню
 void ImageViewer::on_actionOpen_triggered()
 {
-    EnterPathWin *enter_path_window = new EnterPathWin(this, &image);
+    EnterPathWin *enter_path_window = new EnterPathWin(this, &image, &preview_image);
     enter_path_window->show();
 }
 
+// Таймер для обновления изображения
 void ImageViewer::updateImage()
 {
     if(!image.isNull())
     {
-//        QImage image_scaled = image.scaled(ui->centralwidget->size().width(), ui->centralwidget->size().height() - ui->buttonBar->size().height(), Qt::IgnoreAspectRatio);
-        ui->imageViewer->setPixmap(QPixmap::fromImage(image)); //
-//        std::cout << image.size().width() << "x" << image.size().height() << std::endl;
+        ui->imageViewer->setPixmap(QPixmap::fromImage(preview_image)); //
     }
 }
 
 void ImageViewer::on_buttRGB_clicked()
 {
-    rgbsliders->show();
+    RGBSliders *rgbsliders_widget = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов;
+    // rgbsliders_widget->origin_image_ = &preview_image;
+    rgbsliders_widget->show();
 }
 
 
 void ImageViewer::on_buttGrayScale_clicked()
 {
-    ImageViewer::image = *ImageViewer::SetGrayScale(image);
+    ImageViewer::preview_image = *ImageViewer::SetGrayScale(image);
+    ImageViewer::image = ImageViewer::preview_image;
+}
+
+
+void ImageViewer::on_buttContrast_clicked()
+{
+    setcontrast_widget->show();
 }
 

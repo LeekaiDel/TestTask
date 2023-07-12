@@ -1,11 +1,14 @@
 #ifndef TEXTEDITOR_H
 #define TEXTEDITOR_H
+#include <iostream>
+#include <algorithm>
 
 #include <enterpathwin.h>
 #include <rgbsliders.h>
+#include <setcontrast.h>
+
 #include <QMainWindow>
 #include <QString>
-#include <iostream>
 #include <QTimer>
 #include <QImage>
 #include <QPixmap>
@@ -28,9 +31,11 @@ public:
     ~ImageViewer();
 
     QImage image;
+    QImage preview_image;
     QTimer *timer_update_image;
 
-    RGBSliders *rgbsliders;
+    // RGBSliders *rgbsliders_widget;
+    SetContrast *setcontrast_widget;
     // Объявляем методы обработки изображений
     QImage *SetGrayScale(QImage origin_img);    // Метод для перевода изображения в ЧБ формат
 
@@ -44,6 +49,8 @@ private slots:
     void on_buttRGB_clicked();
 
     void on_buttGrayScale_clicked();
+
+    void on_buttContrast_clicked();
 
 private:
     Ui::ImageViewer *ui;

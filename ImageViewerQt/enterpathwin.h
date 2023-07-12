@@ -14,9 +14,10 @@ class EnterPathWin : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit EnterPathWin(QWidget *parent = nullptr, QImage *image = nullptr);
+    explicit EnterPathWin(QWidget *parent = nullptr, QImage *image = nullptr, QImage *preview_image = nullptr);
     ~EnterPathWin();
     QImage *image_;
+    QImage *preview_image_;
 
 private slots:
     void on_ButtCancel_clicked();
