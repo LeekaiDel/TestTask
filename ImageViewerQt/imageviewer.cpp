@@ -10,7 +10,7 @@ ImageViewer::ImageViewer(QWidget *parent):
     ui->setupUi(this);
     // Создаем экземпляры классов преобразований изображения
     // rgbsliders_widget = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов
-    setcontrast_widget = new SetContrast(this, &preview_image); // Настройка контраста
+    // setcontrast_widget = new SetContrast(this, &preview_image); // Настройка контраста
 
     timer_update_image = new QTimer(this);
     connect(timer_update_image, &QTimer::timeout, this, &ImageViewer::updateImage);
@@ -63,9 +63,8 @@ void ImageViewer::updateImage()
 
 void ImageViewer::on_buttRGB_clicked()
 {
-    RGBSliders *rgbsliders_widget = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов;
-    // rgbsliders_widget->origin_image_ = &preview_image;
-    rgbsliders_widget->show();
+    RGBSliders *rgbsliders_window = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов;
+    rgbsliders_window->show();
 }
 
 
@@ -78,6 +77,14 @@ void ImageViewer::on_buttGrayScale_clicked()
 
 void ImageViewer::on_buttContrast_clicked()
 {
-    setcontrast_widget->show();
+    SetContrast *setcontrast_window = new SetContrast(this, &image, &preview_image); // Настройка контраста
+    setcontrast_window->show();
+}
+
+
+void ImageViewer::on_buttTranslate_clicked()
+{
+    Translate *translate_window = new Translate(this, &image, &preview_image);
+    translate_window->show();
 }
 

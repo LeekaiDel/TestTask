@@ -13,6 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -32,6 +33,10 @@ set(PROJECT_SOURCES
         setcontrast.h
         setcontrast.cpp
         setcontrast.ui
+
+        translate.h
+        translate.cpp
+        translate.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

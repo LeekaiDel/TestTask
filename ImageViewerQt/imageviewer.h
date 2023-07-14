@@ -6,6 +6,7 @@
 #include <enterpathwin.h>
 #include <rgbsliders.h>
 #include <setcontrast.h>
+#include <translate.h>
 
 #include <QMainWindow>
 #include <QString>
@@ -35,7 +36,7 @@ public:
     QTimer *timer_update_image;
 
     // RGBSliders *rgbsliders_widget;
-    SetContrast *setcontrast_widget;
+    // SetContrast *setcontrast_widget;
     // Объявляем методы обработки изображений
     QImage *SetGrayScale(QImage origin_img);    // Метод для перевода изображения в ЧБ формат
 
@@ -51,6 +52,8 @@ private slots:
     void on_buttGrayScale_clicked();
 
     void on_buttContrast_clicked();
+
+    void on_buttTranslate_clicked();
 
 private:
     Ui::ImageViewer *ui;

@@ -24,6 +24,10 @@ public:
     int last_slider_r_pose = 0;
     int last_slider_g_pose = 0;
     int last_slider_b_pose = 0;
+    
+    int slider_r_pose = 0;
+    int slider_g_pose = 0;
+    int slider_b_pose = 0;
 
     void setRgbChannels();
     

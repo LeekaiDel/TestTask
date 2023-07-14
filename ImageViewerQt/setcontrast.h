@@ -15,15 +15,28 @@ class SetContrast : public QDialog
     Q_OBJECT
 
 public:
-    explicit SetContrast(QWidget *parent = nullptr, QImage *origin_image = nullptr);
+    explicit SetContrast(QWidget *parent = nullptr, QImage *origin_image = nullptr, QImage *preview_image = nullptr);
     ~SetContrast();
-    QImage *image;
-    uint min;
-    uint max;
-private slots:
-    void on_changeMinSlider_sliderReleased();
+    QImage *origin_image_;
+    QImage *preview_image_;
+    
+    int min = 0;
+    int max = 0;
 
-    void on_changeMaxSlider_sliderReleased();
+    int min_r = 255;
+    int min_g = 255;
+    int min_b = 255;
+
+    int max_r = 0;
+    int max_g = 0;
+    int max_b = 0;
+    
+    void setContrast();
+
+private slots:
+    void on_changeMinSlider_sliderMoved(int position);
+ 
+    void on_changeMaxSlider_sliderMoved(int position);
 
 private:
     Ui::SetContrast *ui;
