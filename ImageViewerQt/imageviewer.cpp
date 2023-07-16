@@ -95,3 +95,10 @@ void ImageViewer::on_buttBlur_clicked()
     image = preview_image;
 }
 
+
+void ImageViewer::on_actionSave_triggered()
+{
+    SaveResult *saveresult = new SaveResult(this, &image);
+    saveresult->show();
+}
+

@@ -28,20 +28,20 @@ void Translate::scaleImage(float scale_k)
     if (n_w != 0 && n_h != 0)
     {
         scaled_image = new QImage(n_w, n_h, QImage::Format_RGB32);
-         for(int h = 0; h < image_.height(); ++h)
-         {
-             QRgb *row = (QRgb *)image_.scanLine(h);
-             for(int w = 0; w < image_.width(); ++w)
-             {
-                 int w_s = w * scale_k;
-                 int h_s = h * scale_k;
-                 if (w_s < n_w && h_s < n_h)
-                 {
-                    scaled_image->setPixel(w_s, h_s, row[w]);
-                 }
-             }
-         }
-         *preview_image_ = *scaled_image;
+        for(int h = 0; h < image_.height(); ++h)
+        {
+            QRgb *row = (QRgb *)image_.scanLine(h);
+            for(int w = 0; w < image_.width(); ++w)
+            {
+                int w_s = w * scale_k;
+                int h_s = h * scale_k;
+                if (w_s < n_w && h_s < n_h)
+                {
+                scaled_image->setPixel(w_s, h_s, row[w]);
+                }
+            }
+        }
+        *preview_image_ = *scaled_image;
     }
 }
 
@@ -89,9 +89,7 @@ void Translate::rotateImage(float alpha_in_rad)
             }
         }
     }
-
     *preview_image_ = *rotated_image;
-    // translated_image_ = *rotated_image;
 }
 
 // Выполняем скалирование изображения в процессе смещения ползунка и отображаем значение в labelValue

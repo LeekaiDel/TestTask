@@ -1,0 +1,5 @@
+/home/leekai/TestTask/build/CMakeFiles/ImageViewerQt.dir
+/home/leekai/TestTask/build/CMakeFiles/edit_cache.dir
+/home/leekai/TestTask/build/CMakeFiles/rebuild_cache.dir
+/home/leekai/TestTask/build/CMakeFiles/ImageViewerQt_autogen_timestamp_deps.dir
+/home/leekai/TestTask/build/CMakeFiles/ImageViewerQt_autogen.dir

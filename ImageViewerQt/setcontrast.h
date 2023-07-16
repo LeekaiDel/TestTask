@@ -23,13 +23,13 @@ public:
     int min = 0;
     int max = 0;
 
-    int min_r = 255;
-    int min_g = 255;
-    int min_b = 255;
+    int min_r = 0;
+    int min_g = 0;
+    int min_b = 0;
 
-    int max_r = 0;
-    int max_g = 0;
-    int max_b = 0;
+    int max_r = 255;
+    int max_g = 255;
+    int max_b = 255;
     
     void setContrast();
 
@@ -37,6 +37,8 @@ private slots:
     void on_changeMinSlider_sliderMoved(int position);
  
     void on_changeMaxSlider_sliderMoved(int position);
+
+    void on_SetContrast_finished(int result);
 
 private:
     Ui::SetContrast *ui;

@@ -8,6 +8,7 @@
 #include <setcontrast.h>
 #include <translate.h>
 #include <gaussianblur.h>
+#include <saveresult.h>
 
 #include <QMainWindow>
 #include <QString>
@@ -57,6 +58,8 @@ private slots:
     void on_buttTranslate_clicked();
 
     void on_buttBlur_clicked();
+
+    void on_actionSave_triggered();
 
 private:
     Ui::ImageViewer *ui;

@@ -40,6 +40,10 @@ set(PROJECT_SOURCES
 
         gaussianblur.h
         gaussianblur.cpp
+
+        saveresult.h
+        saveresult.cpp
+        saveresult.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
