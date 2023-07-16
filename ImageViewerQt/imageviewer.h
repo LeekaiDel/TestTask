@@ -7,6 +7,7 @@
 #include <rgbsliders.h>
 #include <setcontrast.h>
 #include <translate.h>
+#include <gaussianblur.h>
 
 #include <QMainWindow>
 #include <QString>
@@ -54,6 +55,8 @@ private slots:
     void on_buttContrast_clicked();
 
     void on_buttTranslate_clicked();
+
+    void on_buttBlur_clicked();
 
 private:
     Ui::ImageViewer *ui;

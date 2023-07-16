@@ -37,6 +37,9 @@ set(PROJECT_SOURCES
         translate.h
         translate.cpp
         translate.ui
+
+        gaussianblur.h
+        gaussianblur.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

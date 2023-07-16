@@ -88,3 +88,10 @@ void ImageViewer::on_buttTranslate_clicked()
     translate_window->show();
 }
 
+
+void ImageViewer::on_buttBlur_clicked()
+{
+    preview_image = GaussianBlur::convolutionMethod(image, GaussianBlur::gaussian_kernel);
+    image = preview_image;
+}
+
