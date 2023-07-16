@@ -24,40 +24,30 @@
       </widget>
      </item>
      <item>
-      <widget class="QSlider" name="changeMinSlider">
+      <widget class="QSlider" name="changeOffsetSlider">
        <property name="maximum">
         <number>255</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelValue">
+       <property name="text">
+        <string>0</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="maxSlider">
-       <property name="text">
-        <string>Max</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSlider" name="changeMaxSlider">
-       <property name="maximum">
-        <number>255</number>
-       </property>
-       <property name="sliderPosition">
-        <number>0</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QPushButton" name="buttGetResult">
+     <property name="text">
+      <string>Get result</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
