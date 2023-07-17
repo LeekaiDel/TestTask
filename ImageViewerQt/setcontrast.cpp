@@ -33,8 +33,7 @@ void SetContrast::setContrast()
            max = std::min(max, 255 - offset);
        }
     }
-
-    std::cout << "min: " << min << "max: " << max << std::endl;
+    // std::cout << "min: " << min << "max: " << max << std::endl;
 
     for (int h = 0; h < preview_image_->height(); ++h)
     {

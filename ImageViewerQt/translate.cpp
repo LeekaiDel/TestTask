@@ -18,7 +18,6 @@ Translate::~Translate()
 
 void Translate::scaleImage(float scale_k)
 {
-
     int n_w = 0;
     int n_h = 0;
 
@@ -37,7 +36,7 @@ void Translate::scaleImage(float scale_k)
                 int h_s = h * scale_k;
                 if (w_s < n_w && h_s < n_h)
                 {
-                scaled_image->setPixel(w_s, h_s, row[w]);
+                    scaled_image->setPixel(w_s, h_s, row[w]);
                 }
             }
         }
@@ -83,7 +82,7 @@ void Translate::rotateImage(float alpha_in_rad)
             int ox = offset_origin_pixel_pose[0] + image_.width() / 2; 
             int oy = offset_origin_pixel_pose[1] + image_.height() / 2; 
 
-            if(ox >= 0 && ox <=  image_.width() && oy >= 0 && oy <=  image_.height())
+            if(ox >= 0 && ox <  image_.width() && oy >= 0 && oy <  image_.height())
             {
                 rotated_image->setPixel(x, y, image_.pixel(ox, oy));
             }
