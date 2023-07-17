@@ -22,26 +22,18 @@ public:
     
     int offset = 0;
 
-    int min_r = 255;
-    int min_g = 255;
-    int min_b = 255;
+    int min = 255;
+    int max = 0;
 
-    int max_r = 0;
-    int max_g = 0;
-    int max_b = 0;
     
     void setContrast();
+    
+    int cutBrightnessVal(int val);
 
 private slots:
-//    void on_changeMinSlider_sliderMoved(int position);
- 
-//    void on_changeMaxSlider_sliderMoved(int position);
-
     void on_SetContrast_finished(int result);
 
     void on_changeOffsetSlider_sliderMoved(int position);
-
-    void on_buttGetResult_clicked();
 
 private:
     Ui::SetContrast *ui;

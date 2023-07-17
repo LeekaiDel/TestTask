@@ -18,39 +18,45 @@ SetContrast::~SetContrast()
 void SetContrast::setContrast()
 {
     // Находим минимумы и максимумы яркости для каждого канала
-   for (int h = 0; h < origin_image_->height(); ++h)
-   {
+    for (int h = 0; h < origin_image_->height(); ++h)
+    {
        QRgb *row = (QRgb *)origin_image_->scanLine(h);
        for (int w = 0; w < origin_image_->width(); ++w)
        {
-           min_r = std::min(min_r, qRed(row[w]));
-           min_g = std::min(min_g, qGreen(row[w]));
-           min_b = std::min(min_b, qBlue(row[w]));
+           // Получаем компоненту Y из формата YUV
+           int y = 0.2126 * qRed(row[w]) + 0.7152 * qGreen(row[w]) + 0.0722 * qBlue(row[w]);
 
-           max_r = std::max(max_r, qRed(row[w]));
-           max_g = std::max(max_g, qGreen(row[w]));
-           max_b = std::max(max_b, qBlue(row[w]));
-
-            min_r = std::max(min_r, offset);
-            min_g = std::max(min_g, offset);
-            min_b = std::max(min_b, offset);
-
-            max_r = std::min(max_r, 255 - offset);
-            max_g = std::min(max_g, 255 - offset);
-            max_b = std::min(max_b, 255 - offset);
+           min = std::min(min, y);
+           max = std::max(max, y);
+           // Делаем смещение краев гистограммы для растягивания
+           min = std::max(min, offset);
+           max = std::min(max, 255 - offset);
        }
-   }
+    }
+
+    std::cout << "min: " << min << "max: " << max << std::endl;
 
     for (int h = 0; h < preview_image_->height(); ++h)
     {
         QRgb *row = (QRgb *)origin_image_->scanLine(h);
         for (int w = 0; w < preview_image_->width(); ++w)
         {
-            if (min_r != max_r && min_g != max_g && min_b != max_b)
+            if (min != max)
             {
-                int new_r = (qRed(row[w]) - min_r) * (255 / (max_r - min_r));
-                int new_g = (qGreen(row[w]) - min_g) * (255 / (max_g - min_g));
-                int new_b = (qBlue(row[w]) - min_b) * (255 / (max_b - min_b));
+                // Переводим в формат YUV
+                int y = 0.2126 * qRed(row[w]) + 0.7152 * qGreen(row[w]) + 0.0722 * qBlue(row[w]);
+                int u = -0.0999 * qRed(row[w]) - 0.3360 * qGreen(row[w]) + 0.4360 * qBlue(row[w]);
+                int v = 0.6150 * qRed(row[w]) - 0.5586 * qGreen(row[w]) - 0.0563 * qBlue(row[w]);
+                // Растягиваем компоненту Y
+                int new_y = ((y - min) * 255) / (max - min);
+                // Переводим обратно в RGB
+                int new_r = new_y + 1.2803 * v;
+                int new_g = new_y - 0.2148 * u - 0.3805 * v;
+                int new_b = new_y + 2.1279 * u;
+
+                new_r = SetContrast::cutBrightnessVal(new_r);
+                new_g = SetContrast::cutBrightnessVal(new_g);
+                new_b = SetContrast::cutBrightnessVal(new_b);
 
                 preview_image_->setPixel(w, h, qRgb(new_r, new_g, new_b));
             }
@@ -58,6 +64,14 @@ void SetContrast::setContrast()
     }
 }
 
+int SetContrast::cutBrightnessVal(int val)
+{
+    if(val > 255) return 255;
+
+    else if(val < 0) return 0;
+    
+    else return val;
+}
 
 void SetContrast::on_SetContrast_finished(int result)
 {
@@ -68,11 +82,6 @@ void SetContrast::on_changeOffsetSlider_sliderMoved(int position)
 {
     offset = position;
     ui->labelValue->setText(QString::fromStdString(std::to_string(position)));
-}
-
-
-void SetContrast::on_buttGetResult_clicked()
-{
     SetContrast::setContrast();
 }
 

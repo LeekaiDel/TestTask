@@ -24,7 +24,7 @@ void EnterPathWin::on_ButtCancel_clicked()
 
 void EnterPathWin::on_ButtEnter_clicked()
 {
-    *image_ = QImage("/home/leekai/TestTask/ImageViewerQt/5.jpg"); //ui->lineEdit->text()
+    *image_ = QImage("/home/leekai/TestTask/ImageViewerQt/6.jpg"); //ui->lineEdit->text()
     if (!image_->isNull())
     {
         *preview_image_ = *image_;

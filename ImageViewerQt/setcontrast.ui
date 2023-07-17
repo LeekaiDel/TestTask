@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>148</height>
+    <height>92</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="minLabel">
        <property name="text">
-        <string>Min</string>
+        <string>Offset</string>
        </property>
       </widget>
      </item>
@@ -41,13 +41,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="buttGetResult">
-     <property name="text">
-      <string>Get result</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
