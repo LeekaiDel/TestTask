@@ -9,6 +9,7 @@
 #include <translate.h>
 #include <gaussianblur.h>
 #include <saveresult.h>
+#include <cmath>
 
 #include <QMainWindow>
 #include <QString>

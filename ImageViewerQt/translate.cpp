@@ -8,6 +8,7 @@ Translate::Translate(QWidget *parent, QImage *origin_image, QImage *preview_imag
     origin_image_ = origin_image;
     image_ = *origin_image;
     preview_image_ = preview_image;
+    scaled_image = new QImage();
     ui->setupUi(this);   
 }
 
@@ -16,32 +17,34 @@ Translate::~Translate()
     delete ui;
 }
 
-void Translate::scaleImage(float scale_k)
+QImage Translate::scaleImage(float scale_k, QImage origin_image)
 {
     int n_w = 0;
     int n_h = 0;
 
-    n_w = int(image_.width() * scale_k);
-    n_h = int(image_.height() * scale_k);
+    n_w = int(origin_image.width() * scale_k);
+    n_h = int(origin_image.height() * scale_k);
+    
+    QImage *scaled_image_ = new QImage(n_w, n_h, QImage::Format_RGB32);
 
     if (n_w != 0 && n_h != 0)
     {
-        scaled_image = new QImage(n_w, n_h, QImage::Format_RGB32);
-        for(int h = 0; h < image_.height(); ++h)
+        for(int h = 0; h < origin_image.height(); ++h)
         {
-            QRgb *row = (QRgb *)image_.scanLine(h);
-            for(int w = 0; w < image_.width(); ++w)
+            QRgb *row = (QRgb *)origin_image.scanLine(h);
+            for(int w = 0; w < origin_image.width(); ++w)
             {
                 int w_s = w * scale_k;
                 int h_s = h * scale_k;
                 if (w_s < n_w && h_s < n_h)
                 {
-                    scaled_image->setPixel(w_s, h_s, row[w]);
+                    scaled_image_->setPixel(w_s, h_s, row[w]);
                 }
             }
         }
-        *preview_image_ = *scaled_image;
+        // *preview_image_ = *scaled_image;
     }
+    return *scaled_image_;
 }
 
 // Поворот вектора
@@ -98,7 +101,8 @@ void Translate::on_scaleSlider_sliderMoved(int position)
     ui->scaleValueLabel->setText(QString::fromStdString(std::to_string(position)));
     if(!origin_image_->isNull())
     {
-        Translate::scaleImage(scale_k);
+        *Translate::scaled_image = Translate::scaleImage(scale_k, image_);
+        *preview_image_ = *Translate::scaled_image; 
     }
 }
 

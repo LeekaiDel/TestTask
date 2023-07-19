@@ -25,7 +25,7 @@ public:
     QImage *rotated_image;
     QImage *scaled_image;
     
-    void scaleImage(float scale_k);
+    static QImage scaleImage(float scale_k, QImage origin_image);
 
     void rotateImage(float alpha_in_rad);
 

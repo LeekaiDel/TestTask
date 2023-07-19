@@ -9,9 +9,6 @@ ImageViewer::ImageViewer(QWidget *parent):
     // Настраиваем окошко приложения
     ui->setupUi(this);
     // Создаем экземпляры классов преобразований изображения
-    // rgbsliders_widget = new RGBSliders(this, &image, &preview_image); // Настройка RGB каналов
-    // setcontrast_widget = new SetContrast(this, &preview_image); // Настройка контраста
-
     timer_update_image = new QTimer(this);
     connect(timer_update_image, &QTimer::timeout, this, &ImageViewer::updateImage);
     timer_update_image->start(100);
@@ -57,7 +54,14 @@ void ImageViewer::updateImage()
 {
     if(!image.isNull())
     {
-        ui->imageViewer->setPixmap(QPixmap::fromImage(preview_image)); //
+        // Скейлим изображение если оно после трансформаций стало больше чем окно просмотра
+//        if(preview_image.height() > ui->imageViewer->height())
+//        {
+//            float scale_k = 1.0;
+//            scale_k = float(ui->imageViewer->height()) / float(preview_image.height());
+//            preview_image = Translate::scaleImage(scale_k, preview_image);
+//        }
+        ui->imageViewer->setPixmap(QPixmap::fromImage(preview_image));
     }
 }
 
