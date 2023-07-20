@@ -1,10 +1,12 @@
 #ifndef TRANSLATE_H
 #define TRANSLATE_H
 
+#define _USE_MATH_DEFINES
+
 #include <QDialog>
 #include <iostream>
 #include <cmath>
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 namespace Ui {
 class Translate;

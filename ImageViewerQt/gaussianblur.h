@@ -2,7 +2,7 @@
 #define GAUSSIANBLUR_H
 
 #include <iostream>
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 #include <QImage>
 #include <QRgb>
 
